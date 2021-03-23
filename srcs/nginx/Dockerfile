@@ -7,7 +7,8 @@ RUN apk add wget &&\
 	apk add nginx &&\
 	apk add openssl &&\
 	apk add openssh &&\
-	apk add openrc
+	apk add openrc &&\
+	apk add supervisor
 
 EXPOSE 80 443 22
 
