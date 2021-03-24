@@ -14,7 +14,7 @@ EXPOSE 80 443 22
 
 #Setting up nginx
 RUN adduser -D -g 'www' www
-RUN mkdir -p /www
+RUN mkdir -p /www/img
 RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /www
 
@@ -29,7 +29,11 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 		-out /etc/ssl/certs/localhost.crt
 
 COPY ./conf/start.sh /
+#Landing page
+COPY ./conf/img/* /www/img/
 COPY ./conf/index.html /www/
+
+
 RUN chmod -x /start.sh
 
 CMD sh start.sh
