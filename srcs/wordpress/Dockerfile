@@ -7,22 +7,16 @@ RUN apk add wget vim tar&&\
 	apk add openssl &&\
 	apk add openssh &&\
 	apk add openrc &&\
-	apk add php7-common php7-session php7-iconv\
-			php7-json php7-gd php7-curl php7-xml php7-mysqli\
-			php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql\
-			php7-soap php7-xmlrpc php7-posix php7-mcrypt\
-			php7-gettext php7-ldap php7-ctype php7-dom
-
-
-EXPOSE 5050
+	apk add php7 php7-fpm php7-json php7-mysqli &&\
+	apk add supervisor
 
 #Setting up nginx
 RUN adduser -D -g 'www' www
 RUN mkdir -p /www
 RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /www
-
 RUN mkdir -p /run/nginx
+RUN mkdir -p /var/run/php
 RUN rm /etc/nginx/conf.d/*.conf
 COPY ./conf/nginx.conf /etc/nginx/conf.d/nginx.conf
 
@@ -31,9 +25,17 @@ RUN mkdir -p /var/www && \
 	wget https://wordpress.org/latest.tar.gz && \
 	tar -xzvf latest.tar.gz --strip-components 1 -C /var/www && \
 	rm -rf latest.tar.gz
-COPY ./conf/wp.php  /var/www/wordpress/wp-config.php
+COPY ./conf/wp.php  /var/www/wp-config.php
 
-COPY ./conf/start.sh /
-RUN chmod -x /start.sh
+#Adding CSR
+RUN mkdir -p /etc/ssl/certs/
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+		-subj "/C=RU/ST=Tatarstan/L=Kazan/O=21/OU=School/CN=localhost" \
+		-keyout /etc/ssl/certs/localhost.key \
+		-out /etc/ssl/certs/localhost.crt
 
-CMD sh start.sh
+COPY ./conf/supervisor.conf /etc/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]
+
+EXPOSE 5050

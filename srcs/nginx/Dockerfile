@@ -28,12 +28,11 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 		-keyout /etc/ssl/certs/localhost.key \
 		-out /etc/ssl/certs/localhost.crt
 
-COPY ./conf/start.sh /
 #Landing page
 COPY ./conf/img/* /www/img/
 COPY ./conf/index.html /www/
 
+#Supervisor
+COPY ./conf/supervisor.conf /etc/supervisord.conf
 
-RUN chmod -x /start.sh
-
-CMD sh start.sh
+CMD ["usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
