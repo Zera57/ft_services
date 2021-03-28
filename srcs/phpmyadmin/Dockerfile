@@ -7,7 +7,7 @@ RUN apk add wget vim tar&&\
 	apk add openssl &&\
 	apk add openssh &&\
 	apk add openrc &&\
-	apk add php7 php7-fpm php7-json php7-mysqli php7-xml php7-iconv &&\
+	apk add php7 php7-session php7-fpm php7-json php7-mysqli php7-xml php7-iconv &&\
 	apk add supervisor
 
 #Setting up nginx
@@ -25,6 +25,7 @@ RUN mkdir -p var/www/phpmyadmin &&\
 	wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.tar.gz && \
 	tar -xzvf phpMyAdmin-5.1.0-all-languages.tar.gz --strip-components 1 -C /var/www/phpmyadmin && \
 	rm -rf phpMyAdmin-5.1.0-all-languages.tar.gz
+COPY ./conf/config.inc.php /var/www/phpmyadmin/config.inc.php
 RUN chown -R www:www /var/www/* && \
 	chmod -R 755 /var/www/*
 
