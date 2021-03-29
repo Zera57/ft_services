@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-svc
+spec:
+  ports:
+  - port: 8806
+  selector:
+    app: influxdb
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deployment
+  labels:
+    app: phpmyadmin
+spec:
+  selector:
+    matchLabels:
+      app: influxdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - image: influxdb-image
+        name: influxdb
+        imagePullPolicy: Never
+        env:
+          # Use secret in real usage
+        - name: influxdb_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 8806
+          name: influxdb
+        volumeMounts:
+        - name: influxdb-persistent-storage
+          mountPath: /var/lib/influxdb
+      volumes:
+      - name: influxdb-persistent-storage
+        persistentVolumeClaim:
+          claimName: influxdb-pv-claim

@@ -2,14 +2,15 @@ FROM alpine:3.12.0
 
 RUN apk update && apk upgrade
 
-RUN apk add mysql mysql-client openrc
+RUN apk add influxdb
 
-VOLUME ["/var/lib/mysql"]
+RUN     mkdir -p /var/lib/influxdb
 
-COPY ./conf/my.conf /etc/my.cnf
+VOLUME ["/var/lib/influxdb"]
+
 COPY ./conf/start.sh /start.sh
 RUN chmod -x /start.sh
 
 CMD sh /start.sh
 
-EXPOSE 3306
+EXPOSE 8806
