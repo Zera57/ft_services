@@ -8,6 +8,11 @@ spec:
   externalTrafficPolicy: Cluster
   type: LoadBalancer
   loadBalancerIP: 192.168.99.120
+  ports:
+    - protocol: TCP
+      name: https
+      port: 10101
+      targetPort: 10101
   selector:
     app: telegraf
 ---

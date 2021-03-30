@@ -13,3 +13,5 @@ RUN tar -zxvf grafana-7.5.1.linux-amd64.tar.gz
 WORKDIR /grafana-7.5.1/bin
 
 CMD ./grafana-server
+
+EXPOSE 3000
