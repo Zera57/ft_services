@@ -37,14 +37,17 @@
 			user-drag: none;
 		}
 		.main {
+			width: 100vw;
 			height: 100vh;
 			display: flex;
 			align-items: center;
+			justify-content: space-between;
 			flex-direction: column;
 		}
 		.container {
+			margin-top: 300px;
 			width: 1200px;
-			height: 500px;
+			min-height: 500px;
 			background: url(img/map.png);
 			background-repeat: no-repeat;
 			background-size: contain;
@@ -116,6 +119,7 @@
 		.img_kub {
 			align-self: flex-start;
 			width: 250px;
+			margin: 40px 60px;
 		}
 	</style>
 </head>
@@ -135,10 +139,10 @@
 			<a class="pod_el" style="top: 138px;right: 374px;" href="phpmyadmin" target="_blank">
 					<p>PhpMyAdmin</p>
 			</a>
-			<a class="pod_el" style="top: 138px;right: 195px;" href="" target="_blank">
+			<a class="pod_el" style="top: 138px;right: 195px;" href="">
 					<p>FTP-сервер</p>
 			</a>
-			<a class="pod_el" style="bottom: 2px;left: 255px;" href="" target="_blank">
+			<a class="pod_el" style="bottom: 2px;left: 255px;" href="">
 					<p>Telegraf</p>
 			</a>
 			<div class="volume_el tooltip" style="bottom: 2px;left: 121px;">
