@@ -21,12 +21,13 @@
 			-o-user-select: none;
 		}
 		a {
-			text-decoration: none;
+			text-decoration:  	none;
 			color: #fff;
 		}
 		p {
 			font-family: Sans-serif;
 			font-size: 18px;
+			margin: 1px;
 		}
 		img {
 			-webkit-user-drag: none;
@@ -36,13 +37,13 @@
 			user-drag: none;
 		}
 		.main {
-			width: 1200px;
 			height: 100vh;
 			display: flex;
 			align-items: center;
+			flex-direction: column;
 		}
 		.container {
-			width: 100%;
+			width: 1200px;
 			height: 500px;
 			background: url(img/map.png);
 			background-repeat: no-repeat;
@@ -50,17 +51,18 @@
 			position: relative;
 		}
 		.pod_el {
-			background-color: #5129f2;
+			background-color: #306adf;
 			position: absolute;
 			width: 125px;
 			height: 125px;
 			border-radius: 50%;
 			display: flex;
 			align-items: center;
+			flex-direction: column;
 			justify-content: center;
 		}
 		.pod_el:hover {
-			background-color: #381caa;
+			background-color: #014adb;
 			transform: scale(1.1);
 		}
 		.pod_el:active p{
@@ -72,7 +74,7 @@
 		
 		
 		.volume_el {
-			background-color: #8729f2;
+			background-color: #8a30df;
 			position: absolute;
 			width: 125px;
 			height: 125px;
@@ -81,7 +83,7 @@
 			justify-content: center;
 		}
 		.volume_el:hover {
-			background-color: #6a1caa;
+			background-color: #7606df;
 		}
 
 		.tooltip .tooltiptext {
@@ -97,7 +99,14 @@
 		position: absolute;
 		z-index: 1;
 		top: 20px;
+		}
+
+		.text-right {
 		left: 105%;
+		}
+
+		.text-left {
+		right: 105%;
 		}
 
 		.tooltip:hover .tooltiptext {
@@ -105,9 +114,7 @@
 		}
 
 		.img_kub {
-			position: absolute;
-			left: 50px;
-			bottom: 20px;
+			align-self: flex-start;
 			width: 250px;
 		}
 	</style>
@@ -121,15 +128,29 @@
 			<a class="pod_el" style="top: 138px;left: 237px;" href="wordpress" target="_blank">
 					<p>Wordpress</p>
 			</a>
+			<a class="pod_el" style="top: 138px;left: 470px;" href="" target="_blank">
+					<p>Nginx</p>
+					<p style="font-size: 12px;">(HOME)</p>
+			</a>
 			<a class="pod_el" style="top: 138px;right: 374px;" href="phpmyadmin" target="_blank">
 					<p>PhpMyAdmin</p>
 			</a>
+			<a class="pod_el" style="top: 138px;right: 195px;" href="" target="_blank">
+					<p>FTP-сервер</p>
+			</a>
+			<a class="pod_el" style="bottom: 2px;left: 255px;" href="" target="_blank">
+					<p>Telegraf</p>
+			</a>
+			<div class="volume_el tooltip" style="bottom: 2px;left: 121px;">
+					<p>InfluxDB</p>
+					<span class="tooltiptext text-left">InfluxDB это бд</span>
+			</div>
 			<div class="volume_el tooltip" style="bottom: 2px;right: 85px;">
 					<p>MySQL</p>
-					<span class="tooltiptext">MySQL — свободная реляционная система управления базами данных.</span>
+					<span class="tooltiptext text-right">MySQL — свободная реляционная система управления базами данных.</span>
 			</div>
 		</div>
-	</div>
 	<img class="img_kub" src="img/kub.png">
+</div>
 </body>
 </html>
