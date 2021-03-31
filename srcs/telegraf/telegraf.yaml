@@ -32,7 +32,14 @@ spec:
       labels:
         app: telegraf
     spec:
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
       containers:
       - name: telegraf
         image: telegraf-image
         imagePullPolicy: Never
+        volumeMounts:
+        - name: dockersock
+          mountPath: /var/run/docker.sock

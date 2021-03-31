@@ -13,4 +13,4 @@ RUN chmod -x /start.sh
 
 CMD sh /start.sh
 
-EXPOSE 8806
+EXPOSE 8086

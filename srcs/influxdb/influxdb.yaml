@@ -4,7 +4,7 @@ metadata:
   name: influxdb-svc
 spec:
   ports:
-  - port: 8806
+  - port: 8086
   selector:
     app: influxdb
   clusterIP: None
@@ -35,7 +35,7 @@ spec:
         - name: influxdb_ROOT_PASSWORD
           value: password
         ports:
-        - containerPort: 8806
+        - containerPort: 8086
           name: influxdb
         volumeMounts:
         - name: influxdb-persistent-storage
