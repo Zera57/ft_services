@@ -22,3 +22,5 @@ To run this project you have to install [minikube](https://kubernetes.io/ru/docs
 Then just run
 
 	./setup.sh
+
+And visit [192.168.99.120:443](https://192.168.99.120:443)
